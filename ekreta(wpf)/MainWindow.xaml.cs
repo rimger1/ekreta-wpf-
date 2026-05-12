@@ -20,5 +20,37 @@ namespace ekreta_wpf_
         {
             InitializeComponent();
         }
+
+        private void diakmenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            feladatpanel.Children.Clear();
+            feladatpanel.Children.Add(new UserControls.UserControldiakok());
+
+        }
+
+        private void tanatmenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void osztalymenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void termekmenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void felhasznalokmenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void kilepesmenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

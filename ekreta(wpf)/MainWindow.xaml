@@ -1,12 +1,64 @@
-﻿<Window x:Class="ekreta_wpf_.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ekreta_wpf_"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+﻿<Window
+    x:Class="ekreta_wpf_.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ekreta_wpf_"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary Source="Resources/listitem.xaml" />
+    </Window.Resources>
+    <DockPanel Background="Fuchsia">
+        <StackPanel Height="30" DockPanel.Dock="Top">
+            <TextBlock
+                FontWeight="ExtraBold"
+                Foreground="Wheat"
+                Text="Ekreta adminfelulet"
+                TextAlignment="Center" />
+        </StackPanel>
+        <StackPanel
+            Width="200"
+            Background="Cyan"
+            DockPanel.Dock="Left">
+            <ListView>
+                <ListViewItem
+                    x:Name="diakmenu"
+                    Content="diakok"
+                    MouseLeftButtonUp="diakmenu_MouseLeftButtonUp"
+                    Style="{StaticResource ResourceKey=listitemstyle}" />
+                <ListViewItem
+                    x:Name="tanatmenu"
+                    Content="tanarok"
+                    MouseLeftButtonUp="tanatmenu_MouseLeftButtonUp"
+                    Style="{StaticResource ResourceKey=listitemstyle}" />
+                <ListViewItem
+                    x:Name="osztalymenu"
+                    Content="osztalyok"
+                    MouseLeftButtonUp="osztalymenu_MouseLeftButtonUp"
+                    Style="{StaticResource ResourceKey=listitemstyle}" />
+                <ListViewItem
+                    x:Name="termekmenu"
+                    Content="termek"
+                    MouseLeftButtonUp="termekmenu_MouseLeftButtonUp"
+                    Style="{StaticResource ResourceKey=listitemstyle}" />
+                <ListViewItem
+                    x:Name="felhasznalokmenu"
+                    Content="felhasznaok"
+                    MouseLeftButtonUp="felhasznalokmenu_MouseLeftButtonUp"
+                    Style="{StaticResource ResourceKey=listitemstyle}" />
+                <ListViewItem
+                    x:Name="kilepesmenu"
+                    Background="MediumVioletRed"
+                    Content="bezaras"
+                    Foreground="Moccasin"
+                    MouseLeftButtonUp="kilepesmenu_MouseLeftButtonUp"
+                    Style="{StaticResource ResourceKey=listitemstyle}" />
+            </ListView>
+        </StackPanel>
+        <StackPanel x:Name="feladatpanel" DockPanel.Dock="Right" />
+    </DockPanel>
 </Window>
