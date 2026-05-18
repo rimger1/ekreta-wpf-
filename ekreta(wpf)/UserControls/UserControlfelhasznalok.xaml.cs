@@ -24,5 +24,10 @@ namespace ekreta_wpf_.UserControls
         {
             InitializeComponent();
         }
+
+        private void datagridfelhasznalok_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
