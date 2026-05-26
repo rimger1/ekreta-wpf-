@@ -30,6 +30,35 @@
                 Grid.Row="0"
                 HorizontalAlignment="Left"
                 Text="felhasznalonev" />
+            <TextBox
+                x:Name="LoginUserTxt"
+                Grid.Row="1"
+                Width="250"
+                HorizontalAlignment="Left" />
+            <TextBlock
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+                Text="Jelszo" />
+            <PasswordBox
+                x:Name="LoginPasswordTxt"
+                Grid.Row="3"
+                Width="250"
+                HorizontalAlignment="Left" />
         </Grid>
+        <TextBlock
+            HorizontalAlignment="Right"
+            FontSize="14"
+            FontStyle="Italic"
+            Foreground="DarkBlue"
+            Text="elfelejtett jelszo" />
+        <Button
+            x:Name="loginbtn"
+            Width="250"
+            Height="35"
+            Margin="0,50,0,0"
+            Background="Black"
+            Click="loginbtn_Click"
+            Content="bejelentkezes"
+            Foreground="Wheat" />
     </StackPanel>
 </Window>

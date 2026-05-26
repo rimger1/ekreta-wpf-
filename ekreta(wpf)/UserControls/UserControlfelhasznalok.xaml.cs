@@ -1,4 +1,5 @@
 ﻿using ekreta_wpf_.Models;
+using ekreta_wpf_.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,10 +38,24 @@ namespace ekreta_wpf_.UserControls
             var felhasznaloRepo = new GenericRepository<Felhasznalo>(App.databasePath);
             var lekerdezes = felhasznaloRepo.GetAll();
             datagridfelhasznalok.ItemsSource=lekerdezes;
+            mentesBtn.Visibility= Visibility.Visible;
+            modBtn.Visibility= Visibility.Collapsed;
+            torlesBtn.Visibility= Visibility.Collapsed;
         }
 
         private void datagridfelhasznalok_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            mentesBtn.Visibility =Visibility.Collapsed;
+            modBtn.Visibility =Visibility.Visible;
+            torlesBtn.Visibility =Visibility.Visible;
+            if(datagridfelhasznalok.SelectedItem != null)
+            {
+                kivalasztottfelhasznalo = (Felhasznalo)datagridfelhasznalok.SelectedItem;
+                felhasznalonevTxt.Text = kivalasztottfelhasznalo.FelhasznaloNev;
+                teljesnevTxt.Text = kivalasztottfelhasznalo.TeljesNev;
+                szerepkkorCombobox.Text = kivalasztottfelhasznalo.SzerepkorNev;
+
+            }
 
         }
 
@@ -50,7 +65,7 @@ namespace ekreta_wpf_.UserControls
             Szerepkor kivalasztottszerepkor = (Szerepkor)Enum.Parse(typeof(Szerepkor),kivalasztottSzerepkorNev);
             int kivalasztottSzereokorId = (int)kivalasztottszerepkor;
 
-            Felhasznalo ujfelhasznalo = new Felhasznalo(felhasznalonevTxt.Text,teljesnevTxt.Text,jelszoText.Password,kivalasztottSzereokorId);
+            Felhasznalo ujfelhasznalo = new Felhasznalo(felhasznalonevTxt.Text,teljesnevTxt.Text,PasswordHelper.HashPassword( jelszoText.Password),kivalasztottSzereokorId);
 
             var felhasznaloRepo = new GenericRepository<Felhasznalo>(App.databasePath);
             felhasznaloRepo.Insert(ujfelhasznalo);
@@ -76,8 +91,13 @@ namespace ekreta_wpf_.UserControls
 
             if(jelszoText.Password != "")
             {
-                kivalasztottfelhasznalo.Jelszo = jelszoText.Password;
+                kivalasztottfelhasznalo.Jelszo = PasswordHelper.HashPassword(jelszoText.Password);
             }
+            var felhasznaloRepo = new GenericRepository<Felhasznalo>(App.databasePath);
+            felhasznaloRepo.Update(kivalasztottfelhasznalo);
+            AdatbazisLekerdezes();
+
+
 
         }
     }

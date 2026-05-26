@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ekreta_wpf_.Models;
+using ekreta_wpf_.Services;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +25,41 @@ namespace ekreta_wpf_
         public userlogin()
         {
             InitializeComponent();
+        }
+
+        private void loginbtn_Click(object sender, RoutedEventArgs e)
+        {
+            string felhasznalonevinput = LoginUserTxt.Text;
+            string jelszoinput = PasswordHelper.HashPassword(LoginPasswordTxt.Password);
+            if(!string.IsNullOrEmpty(LoginUserTxt.Text) || !string.IsNullOrEmpty(LoginPasswordTxt.Password))
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+                {
+                    var user = connection.Table<Felhasznalo>().FirstOrDefault(u => u.FelhasznaloNev == felhasznalonevinput);
+                    if(user != null)
+                    {
+                        if (user.Jelszo == jelszoinput)
+                        {
+                            MainWindow mainwindow = new MainWindow();
+                            mainwindow.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("belepes megtagadva");
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("belepes megtagadva");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("add meg az adataidat");
+            }
         }
     }
 }

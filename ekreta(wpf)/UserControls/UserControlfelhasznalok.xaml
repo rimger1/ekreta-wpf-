@@ -18,6 +18,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="ID" />
                 <DataGridTextColumn Binding="{Binding FelhasznaloNev}" Header="felhasznalonev" />
+                <DataGridTextColumn Binding="{Binding Jelszo}" Header="felhasznalonev" />
                 <DataGridTextColumn Binding="{Binding TeljeNev}" Header="Teljesnev" />
                 <DataGridTextColumn Binding="{Binding Szerepkor}" Header="Szerepkor id" />
                 <DataGridTextColumn Binding="{Binding SzerepkorNev}" Header="Szerepkor nev" />
